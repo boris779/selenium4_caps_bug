@@ -3,13 +3,17 @@ package at.co.boris.webdriversession.webdriverfactory;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.HasDevTools;
+import org.openqa.selenium.devtools.v85.log.Log;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.Arrays;
+
 import java.util.HashMap;
 
 public class RemoteChromeDriverFactory extends RemoteWebDriverFactory {
@@ -37,6 +41,13 @@ public class RemoteChromeDriverFactory extends RemoteWebDriverFactory {
             e.printStackTrace();
         }
 
-        return webDriver = new RemoteWebDriver(gridServer, options);
+        webDriver = new RemoteWebDriver(gridServer, options);
+        webDriver = new Augmenter().augment(webDriver);
+
+        DevTools devTools = ((HasDevTools) webDriver).getDevTools();
+        devTools.createSession();
+
+        devTools.send(Log.enable());
+        return webDriver;
     }
 }
