@@ -30,7 +30,7 @@ public class RemoteChromeDriverFactory extends RemoteWebDriverFactory {
 
         options.setCapability(CapabilityType.BROWSER_NAME, "chrome");
         options.setCapability(CapabilityType.BROWSER_VERSION, getBrowserVersion());
-        options.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
+        //options.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
 
 
 

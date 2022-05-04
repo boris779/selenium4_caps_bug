@@ -17,11 +17,7 @@ public class RemoteChromeDriverFactoryCaps extends RemoteWebDriverFactory {
     public WebDriver createDriver() {
 
         caps.setBrowserName("chrome");
-        caps.setVersion(getBrowserVersion());
-        //caps.setCapability(CapabilityType.PLATFORM_NAME, Platform.LINUX);
-        //caps.setCapability("sessionTimeout", "10m");
-        //caps.setCapability("enableVNC", true);
-        //caps.setCapability("name", getBranchName());
+        caps.setCapability(CapabilityType.BROWSER_VERSION, getBrowserVersion());
 
         HashMap chromePrefs = new HashMap();
         chromePrefs.put("plugins.always_open_pdf_externally", true);
